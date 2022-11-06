@@ -17,5 +17,8 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     #is an HTML tag of the form <a href="">...<a/>
     get contact_path
     assert_select "title", full_title("Contact")
+
+    get signup_path
+    assert_select "title", full_title("Sign up")
   end
 end
