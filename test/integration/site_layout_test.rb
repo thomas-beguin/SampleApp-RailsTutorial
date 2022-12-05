@@ -13,6 +13,15 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", help_path
     assert_select "a[href=?]", about_path
     assert_select "a[href=?]", contact_path
+    assert_select "a[href=?]", login_path
+    user = users(:michael)
+    log_in_as(user)
+    get root_path
+    assert_select "a[href=?]", users_path
+    assert_select "a[href=?]", user_path(user)
+    assert_select "a[href=?]", edit_user_path(user)
+    assert_select "a[href=?]", logout_path
+
     #Rails inserts the path in place of the question mark, and checks if there
     #is an HTML tag of the form <a href="">...<a/>
     get contact_path
