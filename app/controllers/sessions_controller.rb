@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   def create
     @user = User.find_by(email: params[:session][:email])
     if @user&.authenticate(params[:session][:password]) #authenticate method
-                                                          #from has_secure_password from user.rb
+                                                        #from has_secure_password from user.rb
       if @user.activated?
         # The session[:forwarding_url] is already saved with the logged_in_user
         # function in the use_controller file, only if it is a get request

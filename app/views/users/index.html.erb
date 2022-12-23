@@ -6,6 +6,7 @@
 <ul class="users">
   <% @users.each do |user| %>
     <%= render @users %>
+    <%#
     <!-->
     We can render user (for the _user.htm.erb file)
     Rails infers that @users is a list of User objects.
@@ -16,6 +17,7 @@
     inferring the name of the partial from the name of the
     class.
     </!-->
+    %>
   <% end %>
 </ul>
 

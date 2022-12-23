@@ -14,6 +14,7 @@ class UsersController < ApplicationController
   def show
     #enable to render the show view with the URL users/"id"
     @user = User.find(params[:id])
+    @microposts = @user.microposts.paginate(page: params[:page])
     redirect_to root_url and return unless @user.activated?
   end
 
@@ -61,16 +62,6 @@ class UsersController < ApplicationController
     end
 
     # Befor filters
-
-    # Confirm a logged-in user.
-    def logged_in_user
-      unless logged_in?
-        store_location # Puts the requested URL in the session variable under
-                       # the key :forwarding_url
-        flash[:danger] = "Please log in."
-        redirect_to login_url, status: :see_other
-      end
-    end
 
     # Confirm the correct user.
     def correct_user
