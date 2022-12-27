@@ -1,0 +1,13 @@
+<% # When we follow => create action %>
+
+<% # Replace the div with the id "follow_form" of the follow_form view
+    # using the partial %>
+<%= turbo_stream.update "follow_form" do %>
+  <%= render partial: "users/unfollow" %>
+<% end %>
+
+<% # Replace the strong with the id "followers" of the stats view
+    # using the new count %>
+<%= turbo_stream.update "followers" do %>
+  <%= @user.followers.count %>
+<% end %>
